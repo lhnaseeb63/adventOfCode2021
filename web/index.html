@@ -1,0 +1,61 @@
+<!-- Takes in an input.txt and counts how many times the numbers increase and decrease -->
+<!DOCTYPE html>
+<html ng-app="adventOfCode">
+  <head>
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular-route.min.js"></script>
+    <meta name="vieport" content="width=device-width initial scale=1" />
+  </head>
+  <body>
+    <header><h2>Website Header</h2></header>
+    <div class="column">
+      <div class="links">
+        <a href="#/home">Home</a><br />
+        <a href="#/day1">Day 1</a><br />
+        <a href="#/day2">Day 2</a><br />
+      </div>
+    </div>
+
+    <!-- Where the pages change -->
+    <div ng-view></div>
+
+    <!-- Code only works as intended when this div is pasted here -->
+    <div>
+      <input type="file" />
+      <textarea name="" id="" cols="30" rows="10"></textarea>
+    </div>
+    <!-- End of pasted code -->
+
+    <footer><h3>Website footer lalalala</h3></footer>
+
+    <script>
+      var app = angular
+        .module("adventOfCode", ["ngRoute"])
+        .config(function ($routeProvider, $locationProvider) {
+          //inject $locationProvider service
+          $locationProvider.hashPrefix(""); // add configuration
+          $routeProvider
+            .when("/home", {
+              template: "About Us",
+            })
+            .when("/day1", {
+              templateUrl: "views/day1.html",
+              controller: "day1Controller",
+            })
+            .when("/day2", {
+              templateUrl: "views/day2.html",
+              controller: "day2Controller",
+            });
+        });
+    </script>
+
+    <!-- Controllers -->
+    <script src="js/controllers/day1Controller.js"></script>
+    <script src="js/controllers/day2Controller.js"></script>
+
+    <!-- My scripts -->
+    <script src="js/day1.js"></script>
+  </body>
+</html>
