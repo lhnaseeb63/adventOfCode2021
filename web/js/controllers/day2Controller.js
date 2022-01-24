@@ -1,7 +1,7 @@
 app.controller('day2Controller',['$scope', function($scope){
     $scope.test = 'day 2 --> driving the submarine';
     
-    $scope.day1 = function () {
+    $scope.day2 = function () {
 
         increaseOrDecrease();
     }
@@ -33,7 +33,7 @@ app.controller('day2Controller',['$scope', function($scope){
 
           reader.onload = (e) => {
               console.log("entered reader");
-            var index = 0;
+            var depth = 0;
             var lastLine = "";
             var currentLine = "";
             var increased = 0;
@@ -42,33 +42,18 @@ app.controller('day2Controller',['$scope', function($scope){
       
             const file = e.target.result;
             console.log("inside onload");
-            /**We are using split() function and passing regex pattern /\r\n|\n/ as a parameter. This will generate an array of lines and we are storing that in the lines variable. */
-            const lines = file.split(/\r\n|\n/);
+            /**We are using split() function and passing regex pattern /\s+/ as a parameter.*/
+            /**To split on any whitespace (including newlines), you'd use /\s/ with split: */
+            const lines = file.split(/\s+/);
             console.log("split the lines");
             /**-------------- Our Workspace -------------- */
             lines.forEach((line) => {
-              if (index === 0) {
-                lastLine = line;
-                console.log(line + "-->" + index);
-                index++;
-              } else {
-                currentLine = line;
-      
-                if (currentLine > lastLine) {
-                  console.log(line + " --> " + index + "  :increased");
-                  increased++;
-                } else if (currentLine < lastLine) {
-                  console.log(line + " --> " + index + "  :decreased");
-                  decreased++;
-                } else {
-                  console.log(line + " --> " + index);
-                }
-                index++;
-                console.log(index);
-                lastLine = currentLine;
+              console.log(line);
+              if(line === "forward"){
+                
               }
             });
-      
+      /** 
             console.log("Number of inputs: " + index);
             console.log("How many times the inputs increased: " + increased); //1582 is too low
             console.log("How many times the inputs decreased: " + decreased);
@@ -87,7 +72,7 @@ app.controller('day2Controller',['$scope', function($scope){
               "How many times the inputs decreased: " + results[1];
       
             document.getElementById("Index").innerHTML = "Number of inputs: " + index;
-      
+      */
             /**We are using the join() method to join all lines by a newline character (\n). This will return a string and we are setting that string as the value of the textarea element. */
             textarea.value = lines.join("\n");
             console.log("joined the lines");
